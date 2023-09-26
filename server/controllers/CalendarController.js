@@ -6,13 +6,12 @@ const moment = require('moment')
 router.post('/create-event', async (req, res) => {
     const event = Event(req.body)
     console.log(event);
-    await event.save
+    await event.save()
     res.sendStatus(201)
 })
 
 router.get('/get-events', async (req, res) => {
     const events = await Event.find({ start: { $gte: moment(req.query.start).toDate() }, end: { $lte: moment(req.query.end).toDate() } })
-    console.log(events);
     res.send(events)
 })
 
