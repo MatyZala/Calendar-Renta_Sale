@@ -3,7 +3,6 @@ const User = require('../Models/User')
 
 const login = async (req, res) => {
     const { email, password } = req.body
-    console.log(req.body);
     User.findOne({ email }).then((user) => {
         if (!user) {
             return res.json({ message: 'Usuario no encontrado' })
