@@ -6,8 +6,10 @@ const controllers = require('./controllers')
 const cors = require('cors')
 
 const app = express();
+const port = process.env.PORT || 3001
 app.use(bodyParser.json());
 app.use(cors())
+
 
 mongoose
     .connect(process.env.MONGODB_URI, {
@@ -22,7 +24,7 @@ mongoose
         app.use("/api/login", controllers.login)
 
 
-        app.listen(3001, () => console.log('Server started'));
+        app.listen(port, () => console.log('Server started'));
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
